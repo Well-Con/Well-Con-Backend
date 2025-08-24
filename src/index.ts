@@ -2,6 +2,7 @@ import http from "http";
 
 import app from "./app";
 
+// Make sure the logger file exists at ./utils/logger.ts or adjust the import path accordingly
 import logger from "./utils/logger";
 
 import ENV_CONFIG from "./configs/env.config";

@@ -1,22 +1,16 @@
-import express from 'express';
-import prisma from './prisma.js';
+import http from "http";
 
-const app = express();
-app.use(express.json());
+import app from "./app";
 
-app.get('/', (_req, res) => {
-  res.send('API running 🚀');
-});
+import logger from "./utils/logger";
 
-app.get('/users',async (_req, res) => {
-if(prisma?.user === undefined) {
-    return res.status(500).json({ error: 'User model not found' });
-  }
-  const users = await prisma.user.findMany();
-  res.json(users);
-})
+import ENV_CONFIG from "./configs/env.config";
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+import _prisma from "./db/dbConn";
+
+const server = http.createServer(app);
+const BACKEND_PORT = ENV_CONFIG.BACKEND_PORT || 3000;
+
+server.listen(BACKEND_PORT, () => {
+  logger.info(`Server is running on http://localhost:${BACKEND_PORT}`);
 });

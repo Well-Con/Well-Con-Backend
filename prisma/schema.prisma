@@ -27,7 +27,8 @@ model Doctor {
   address String
   city String
   Experties String[]
-  Education String
+  Education String[]
+  Gender String
 }
 
 

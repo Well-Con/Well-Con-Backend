@@ -1,18 +1,18 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const _prisma = new PrismaClient();
 
 async function main() {
-  const user = await prisma.user.create({ data: { name: "John Doe" } });
+  const user = await _prisma.user.create({ data: { name: "John Doe" } });
   console.log(user);
-    // console.log(Object.keys(prisma))
+    // console.log(Object.keys(_prisma))
 
 }
 main().then(() => {
-  prisma.$disconnect();
+  _prisma.$disconnect();
 }).catch((e) => {
     console.error(e);
-    prisma.$disconnect();
+    _prisma.$disconnect();
 });
 
-export default prisma;
+export default _prisma;

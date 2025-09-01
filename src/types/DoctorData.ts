@@ -7,5 +7,16 @@ export type DoctorData = {
     address: string;
     city: string;
     Experties: string[];
-    Education: string;
+    Education: string[];
+    Gender: string;
 };
+// id String @id @default(uuid())
+//   name String
+//   age Int
+//   email String @unique
+//   phoneNo Int @unique
+//   address String
+//   city String
+//   Experties String[]
+//   Education String[]
+//   Gender String

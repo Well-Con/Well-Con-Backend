@@ -1,7 +1,7 @@
 import _prisma from "../prisma";
 import { DoctorData } from "../types/DoctorData";
 
-class Doctor{
+class doctorRepository{
     async getDoctorById(id: string) {
         try {
             const doctor = await _prisma.doctor.findUnique({
@@ -26,4 +26,4 @@ class Doctor{
     }
 }
 
-export default new Doctor();
+export default new doctorRepository();

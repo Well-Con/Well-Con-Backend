@@ -12,9 +12,11 @@ class authController {
         if (!doctorData) {
             return res.status(400).json({ error: "Invalid doctor data" });
         }
-        
-        const user = await userRepository.registerDoctor(doctorData);
-        return res.json(user);
+
+        const hashedPassword = await authServices.hashPassword(doctorData.password);
+
+        const doctor = await authServices.registerDoctor({ ...doctorData, password: hashedPassword });
+        return res.json(doctor);
     }
     async loginDoctor(req: Request, res: Response) {
         const { email, password } = req.body;

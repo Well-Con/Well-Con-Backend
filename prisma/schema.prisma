@@ -29,6 +29,7 @@ model Doctor {
   Experties String[]
   Education String[]
   Gender String
+  password String
 }
 
 

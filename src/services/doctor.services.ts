@@ -10,6 +10,24 @@ class doctorServices{
             throw new Error("Could not fetch doctor");
         }
     }
+    async getAllDoctors() {
+        try {
+            const doctors = await doctorRepository.getAllDoctors();
+            return doctors;
+        } catch (error) {
+            console.error("Error fetching all doctors:", error);
+            throw new Error("Could not fetch doctors");
+        }
+    }
+    async getDoctorBySpecialization(specialization: string) {
+        try {
+            const doctors = await doctorRepository.getAllDoctors();
+            return doctors.filter(doctor => doctor.specialization === specialization);
+        } catch (error) {
+            console.error("Error fetching doctors by specialization:", error);
+            throw new Error("Could not fetch doctors");
+        }
+    }
 }
 
 export default new doctorServices();

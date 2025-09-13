@@ -1,5 +1,6 @@
 import _prisma from "../prisma";
 import { DoctorData } from "../types/DoctorData";
+import { UserData } from "../types/UserData";
 
 class userRepository {
     async registerDoctor(data: DoctorData) {
@@ -10,6 +11,16 @@ class userRepository {
             }
         });
         return user;
+    }
+    getUserByEmail(email: string) {
+        return _prisma.user.findUnique({
+            where: { email },
+        });
+    }
+    createUser(data: UserData) {
+        return _prisma.user.create({
+            data,
+        });
     }
 }
 

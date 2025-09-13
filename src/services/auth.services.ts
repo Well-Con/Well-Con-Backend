@@ -2,7 +2,11 @@ import { Prisma } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import _prisma from "../prisma";
 import { DoctorData } from "../types/DoctorData";
+import userRepository from "../repository/user.repository";
 class authServices {
+    async getUserByEmail(email: string) {
+        return userRepository.getUserByEmail(email);
+    }
     async loginDoctor(email: string, password: string) {
         const doctor = await _prisma.doctor.findUnique({
             where: { email },
@@ -29,6 +33,9 @@ class authServices {
             console.error("Error registering doctor:", error);
             throw new Error("Error registering doctor");
         }
+    }
+    async getUserbyEmail(email: string) {
+        return userRepository.getUserByEmail(email);
     }
 }
 

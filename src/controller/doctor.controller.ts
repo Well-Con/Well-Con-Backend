@@ -14,5 +14,25 @@ class DoctorController{
             return res.status(500).json({ message: "Internal server error" });
         }
     }
+    async getAllDoctors(req: Request, res: Response) {
+        try {
+            const doctors = await doctorServices.getAllDoctors();
+            return res.status(200).json(doctors);
+        } catch (error) {
+            console.error("Error fetching all doctors:", error);
+            return res.status(500).json({ message: "Internal server error" });
+        }
+    }
+
+    async getDoctorBySpecialization(req: Request, res: Response) {
+        const { specialization } = req.query;
+        try {
+            const doctors = await doctorServices.getDoctorBySpecialization(specialization as string);
+            return res.status(200).json(doctors);
+        } catch (error) {
+            console.error("Error fetching doctors by specialization:", error);
+            return res.status(500).json({ message: "Internal server error" });
+        }
+    }
 }
 export default new DoctorController();

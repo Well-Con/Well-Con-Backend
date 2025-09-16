@@ -10,7 +10,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
-    "prisma:run": "tsx src/prisma.ts"
+    "prisma:run": "tsx src/prisma.ts",
+    "prisma:seed": "ts-node prisma/seed/doctor.ts"
   },
   "keywords": [],
   "author": "",

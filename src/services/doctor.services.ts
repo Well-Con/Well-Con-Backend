@@ -28,6 +28,16 @@ class doctorServices{
             throw new Error("Could not fetch doctors");
         }
     }
+
+    async getDoctorById(id: string) {
+        try {
+            const doctor = await doctorRepository.getDoctorById(id);
+            return doctor;
+        } catch (error) {
+            console.error("Error fetching doctor by ID:", error);
+            throw new Error("Could not fetch doctor");
+        }
+    }
 }
 
 export default new doctorServices();

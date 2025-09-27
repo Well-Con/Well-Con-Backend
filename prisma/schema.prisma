@@ -32,7 +32,7 @@ model Doctor {
   expertise         String[]
   education         String[]
   registrationNo    String        @unique
-  consultationTypes String[]
+  consultationTypes ConsultationType[]
   consultationFee   Float[]
   user              User          @relation(fields: [userId], references: [id])
   userId            String        @unique
@@ -50,6 +50,7 @@ model Address {
   state      String
   user       User   @relation(fields: [userId], references: [id])
   userId     String
+  appointments Appointment[]
 }
 
 model Appointment {
@@ -60,6 +61,11 @@ model Appointment {
   userId   String
   doctor   Doctor              @relation(fields: [doctorId], references: [id])
   doctorId String
+  address  Address?            @relation(fields: [addressId], references: [id])
+  addressId String?
+  consultationType ConsultationType
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
 }
 
 enum Role {
@@ -72,6 +78,11 @@ enum AppointmentStatus {
   PENDING
   CONFIRMED
   CANCELLED
+}
+
+enum ConsultationType {
+  Online
+  InPerson
 }
 
 

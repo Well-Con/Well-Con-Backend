@@ -9,7 +9,7 @@ async function main() {
     expertise: ["Cardiology", "Internal Medicine"],
     education: ["MBBS", "MD"],
     registrationNo: "DOC12345",
-    consultationTypes: ["Online", "In-person"],
+    consultationTypes: ["Online", "InPerson"],
     consultationFee: [1000, 1200],
     user: {
       create: {

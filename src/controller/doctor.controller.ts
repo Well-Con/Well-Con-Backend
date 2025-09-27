@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import doctorServices from "../services/doctor.services";
-import userController from "./user.controller";
+// import userController from "./user.controller";
 import userServices from "../services/user.services";
 class DoctorController{
     async getDoctorByEmail(req: Request, res: Response) {
@@ -45,9 +45,6 @@ class DoctorController{
                 return res.status(404).json({ message: "Doctor not found" });
             }
             const user = await userServices.getUserDetailsById(doctor.userId);
-            if(user){
-                doctor.email = user.email;
-            }
 
             return res.status(200).json({...doctor, ...user});
         } catch (error) {

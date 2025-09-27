@@ -7,8 +7,10 @@ class AppointmentRepository {
         });
     }
 
-    async getAllAppointments() {
-        return await _prisma.appointment.findMany();
+    async getAllAppointments(userId: string) {
+        return await _prisma.appointment.findMany({
+            where: { userId }
+        });
     }
 
     async createAppointment(data: any) {

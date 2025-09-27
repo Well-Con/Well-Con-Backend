@@ -20,7 +20,8 @@ class appointmentController {
     }
     async getAllAppointments(req: Request, res: Response) {
         try {
-            const appointments = await appointmentServices.getAllAppointments();
+            const {id} = req.params;
+            const appointments = await appointmentServices.getAllAppointments(id);
             return res.json(appointments);
         } catch (error) {
             return res.status(500).json({message: "Internal Server Error"});

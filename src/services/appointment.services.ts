@@ -17,8 +17,8 @@ class AppointmentServices {
         return await appointmentRepository.createAppointment(appointment);
     }
 
-    async getAllAppointments() {
-        return await appointmentRepository.getAllAppointments();
+    async getAllAppointments(userId: string) {
+        return await appointmentRepository.getAllAppointments(userId);
     }
 
     async createAppointment(data: any) {

@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import doctorServices from "../services/doctor.services";
+import userController from "./user.controller";
+import userServices from "../services/user.services";
 class DoctorController{
     async getDoctorByEmail(req: Request, res: Response) {
         const { email } = req.query;
@@ -42,7 +44,12 @@ class DoctorController{
             if (!doctor) {
                 return res.status(404).json({ message: "Doctor not found" });
             }
-            return res.status(200).json(doctor);
+            const user = await userServices.getUserDetailsById(doctor.userId);
+            if(user){
+                doctor.email = user.email;
+            }
+
+            return res.status(200).json({...doctor, ...user});
         } catch (error) {
             console.error("Error fetching doctor by ID:", error);
             return res.status(500).json({ message: "Internal server error" });

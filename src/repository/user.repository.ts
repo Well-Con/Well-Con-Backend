@@ -22,6 +22,11 @@ class userRepository {
             data,
         });
     }
+    getUserById(id: string) {
+        return _prisma.user.findUnique({
+            where: { id },
+        });
+    }   
 }
 
 export default new userRepository();

@@ -17,7 +17,7 @@ class AppointmentRepository {
         });
     }
 
-    async cancelAppointment(id: string) {
+    async deleteAppointment(id: string) {
         return await _prisma.appointment.delete({
             where: { id }
         });

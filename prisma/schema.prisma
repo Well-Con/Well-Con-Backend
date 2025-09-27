@@ -75,9 +75,10 @@ enum Role {
 }
 
 enum AppointmentStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
+  Pending
+  Completed
+  Cancelled
+  Requested
 }
 
 enum ConsultationType {

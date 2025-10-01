@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import userRepository from "../repository/user.repository";
-import { DoctorData } from "../types/DoctorData";
+import { DoctorDTO } from "../types/DoctorData";
 import doctorServices from "../services/doctor.services";
 import authServices from "../services/auth.services";
 import generateToken from "../utils/jwt";
 
 class authController {
     async registerDoctor(req : Request, res: Response) {
-        const doctorData = req.body as DoctorData;
+        const doctorData = req.body as DoctorDTO;
 
         if (!doctorData) {
             return res.status(400).json({ error: "Invalid doctor data" });

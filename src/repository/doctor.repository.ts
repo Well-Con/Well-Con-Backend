@@ -7,7 +7,11 @@ class doctorRepository{
             const doctor = await _prisma.doctor.findUnique({
                 where: { id },
                 include: {
-                    user: true, // this will pull in all user fields (name, email, phoneNo, etc.)
+                    user: {
+                        include: {
+                            addresses: true
+                        }
+                    }
                 },
             });
             return doctor;
@@ -16,12 +20,22 @@ class doctorRepository{
             throw new Error("Could not fetch doctor");
         }
     }
+    
+    // Fix: Query through user relation since email is in User model
     async getDoctorByEmail(email: string) {
         try {
-            const doctor = await _prisma.doctor.findUnique({
-                where: { email },
+            const doctor = await _prisma.doctor.findFirst({
+                where: { 
+                    user: {
+                        email: email
+                    }
+                },
                 include: {
-                    user: true, // this will pull in all user fields (name, email, phoneNo, etc.)
+                    user: {
+                        include: {
+                            addresses: true
+                        }
+                    }
                 },
             });
             return doctor;
@@ -30,20 +44,24 @@ class doctorRepository{
             throw new Error("Could not fetch doctor");
         }   
     }
+    
     async getAllDoctors() {
         try {
-                const doctors = await _prisma.doctor.findMany({
-                    include: {
-                        user: true, // this will pull in all user fields (name, email, phoneNo, etc.)
-                    },
-                });
+            const doctors = await _prisma.doctor.findMany({
+                include: {
+                    user: {
+                        include: {
+                            addresses: true
+                        }
+                    }
+                },
+            });
             return doctors;
         } catch (error) {
             console.error("Error fetching all doctors:", error);
             throw new Error("Could not fetch doctors");
         }
     }
-    
 }
 
 export default new doctorRepository();

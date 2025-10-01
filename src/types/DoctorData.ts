@@ -1,22 +1,52 @@
-export type DoctorData = {
-    email: string;
-    password: string;
-    name: string;
-    age: number;
-    phoneNo: number;
-    address: string;
+// For req.body
+export type DoctorDTO = {
+  email: string;
+  password: string;
+  name: string;
+  age: number;
+  phoneNo: string;
+  gender: string;
+  expertise: string[];
+  education: string[];
+  registrationNo: string;
+  consultationTypes: ("Online" | "InPerson")[];
+  consultationFee: number[];
+  address: {
     city: string;
-    Experties: string[];
-    Education: string[];
-    Gender: string;
+    state: string;
+    street?: string;
+    area?: string;
+    type?: string;
+  };
 };
-// id String @id @default(uuid())
-//   name String
-//   age Int
-//   email String @unique
-//   phoneNo Int @unique
-//   address String
-//   city String
-//   Experties String[]
-//   Education String[]
-//   Gender String
+
+// For Prisma (after transformation)
+export type DoctorData = {
+  user: {
+    create: {
+      email: string;
+      password: string;
+      name: string;
+      age: number;
+      phoneNo: string;
+      gender: string;
+      role: "DOCTOR";
+      addresses: {
+        create: {
+          name?: string;
+          city: string;
+          street?: string;
+          area?: string;
+          state: string;
+          buildingNo?: string;
+          type?: string;
+        }[];
+      };
+    };
+  };
+  expertise: string[];
+  education: string[];
+  registrationNo: string;
+  consultationTypes: ("Online" | "InPerson")[];
+  consultationFee: number[];
+};

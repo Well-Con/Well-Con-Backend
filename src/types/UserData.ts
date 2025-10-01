@@ -1,20 +1,15 @@
 export type UserData = {
-    email: string;
-    password: string;
-    name: string;
-    age: number;
-    phoneNo: number;
-    address: string;
+  email: string;
+  password: string;
+  name: string;
+  age: number;
+  phoneNo: string;
+  gender: string;
+  address: {
     city: string;
-    Gender: string;
+    state: string;
+    street?: string;
+    area?: string;
+    type?: string;
+  };
 };
-// id String @id @default(uuid())
-//   name String
-//   age Int
-//   email String @unique
-//   phoneNo Int @unique
-//   address String
-//   city String
-//   Experties String[]
-//   Education String[]
-//   Gender String

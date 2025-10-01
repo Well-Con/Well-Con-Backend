@@ -1,3 +1,4 @@
+import { User, Prisma } from "@prisma/client";
 import _prisma from "../prisma";
 import { DoctorData } from "../types/DoctorData";
 import { UserData } from "../types/UserData";
@@ -17,7 +18,8 @@ class userRepository {
             where: { email },
         });
     }
-    createUser(data: UserData) {
+    // Fix: Change parameter type to handle nested creation
+    createUser(data: Prisma.UserCreateInput) {
         return _prisma.user.create({
             data,
         });

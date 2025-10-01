@@ -5,7 +5,10 @@ class doctorRepository{
     async getDoctorById(id: string) {
         try {
             const doctor = await _prisma.doctor.findUnique({
-                where: { id }
+                where: { id },
+                include: {
+                    user: true, // this will pull in all user fields (name, email, phoneNo, etc.)
+                },
             });
             return doctor;
         } catch (error) {
@@ -16,7 +19,10 @@ class doctorRepository{
     async getDoctorByEmail(email: string) {
         try {
             const doctor = await _prisma.doctor.findUnique({
-                where: { email }
+                where: { email },
+                include: {
+                    user: true, // this will pull in all user fields (name, email, phoneNo, etc.)
+                },
             });
             return doctor;
         } catch (error) {
@@ -26,7 +32,11 @@ class doctorRepository{
     }
     async getAllDoctors() {
         try {
-            const doctors = await _prisma.doctor.findMany();
+                const doctors = await _prisma.doctor.findMany({
+                    include: {
+                        user: true, // this will pull in all user fields (name, email, phoneNo, etc.)
+                    },
+                });
             return doctors;
         } catch (error) {
             console.error("Error fetching all doctors:", error);

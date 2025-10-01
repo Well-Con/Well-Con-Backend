@@ -19,10 +19,10 @@ class doctorServices{
             throw new Error("Could not fetch doctors");
         }
     }
-    async getDoctorBySpecialization(specialization: string) {
+    async getDoctorBySpecialization(expertise: string) {
         try {
             const doctors = await doctorRepository.getAllDoctors();
-            return doctors.filter(doctor => doctor.specialization === specialization);
+            return doctors.filter(doctor => doctor.expertise.includes(expertise));
         } catch (error) {
             console.error("Error fetching doctors by specialization:", error);
             throw new Error("Could not fetch doctors");

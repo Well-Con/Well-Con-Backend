@@ -7,15 +7,6 @@ class authServices {
     async getUserByEmail(email: string) {
         return userRepository.getUserByEmail(email);
     }
-    async loginDoctor(email: string, password: string) {
-        const doctor = await _prisma.doctor.findUnique({
-            where: { email },
-        });
-        if (!doctor || doctor.password !== password) {
-            return null;
-        }
-        return doctor;
-    }
     async comparePasswords(plainPassword: string, hashedPassword: string) {
         return bcrypt.compare(plainPassword, hashedPassword);
     }

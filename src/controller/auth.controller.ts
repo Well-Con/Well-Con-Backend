@@ -53,7 +53,7 @@ class authController {
             if (!passwordMatch) {
                 return res.status(401).json({ error: "Invalid email or password" });
             }
-
+            
             const token = await generateToken(user.id, res);
 
             return res.json({ user, token });

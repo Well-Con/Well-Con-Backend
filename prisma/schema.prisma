@@ -25,7 +25,7 @@ model User {
   doctor      Doctor?
   addresses   Address[]
   appointments Appointment[]
-  profileUrl String?
+  profileUrl  String?
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 }

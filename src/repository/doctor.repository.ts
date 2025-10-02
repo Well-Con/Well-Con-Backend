@@ -49,11 +49,7 @@ class doctorRepository{
         try {
             const doctors = await _prisma.doctor.findMany({
                 include: {
-                    user: {
-                        include: {
-                            addresses: true
-                        }
-                    }
+                    user:{}
                 },
             });
             return doctors;

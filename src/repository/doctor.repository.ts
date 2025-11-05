@@ -7,7 +7,7 @@ class doctorRepository{
             const doctor = await _prisma.doctor.findUnique({
                 where: { id },
                 include: {
-                    user: {}
+                    user: true
                 },
             });
             return doctor;
@@ -27,7 +27,7 @@ class doctorRepository{
                     }
                 },
                 include: {
-                    user: {}
+                    user: true
                 },
             });
             return doctor;
@@ -41,7 +41,7 @@ class doctorRepository{
         try {
             const doctors = await _prisma.doctor.findMany({
                 include: {
-                    user:{}
+                    user: true
                 },
             });
             return doctors;

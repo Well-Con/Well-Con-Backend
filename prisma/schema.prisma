@@ -24,6 +24,7 @@ model User {
   gender      String
   doctor      Doctor?
   addresses   Address[]
+  addressId   String?
   appointments Appointment[]
   profileUrl  String?
   createdAt   DateTime     @default(now())

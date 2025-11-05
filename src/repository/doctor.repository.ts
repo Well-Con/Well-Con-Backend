@@ -7,11 +7,7 @@ class doctorRepository{
             const doctor = await _prisma.doctor.findUnique({
                 where: { id },
                 include: {
-                    user: {
-                        include: {
-                            addresses: true
-                        }
-                    }
+                    user: {}
                 },
             });
             return doctor;
@@ -31,11 +27,7 @@ class doctorRepository{
                     }
                 },
                 include: {
-                    user: {
-                        include: {
-                            addresses: true
-                        }
-                    }
+                    user: {}
                 },
             });
             return doctor;

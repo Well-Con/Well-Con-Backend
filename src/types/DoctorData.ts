@@ -1,3 +1,5 @@
+import { Doctor, Role } from "@prisma/client";
+
 // For req.body
 export type DoctorDTO = {
   email: string;

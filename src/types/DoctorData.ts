@@ -10,6 +10,7 @@ export type DoctorDTO = {
   gender: string;
   expertise: string[];
   education: string[];
+  experience: string;
   registrationNo: string;
   consultationTypes: ("Online" | "InPerson")[];
   consultationFee: number[];
@@ -48,6 +49,7 @@ export type DoctorData = {
   };
   expertise: string[];
   education: string[];
+  experience: string;
   registrationNo: string;
   consultationTypes: ("Online" | "InPerson")[];
   consultationFee: number[];

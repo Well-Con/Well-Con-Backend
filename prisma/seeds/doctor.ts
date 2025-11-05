@@ -11,6 +11,7 @@ async function main() {
     registrationNo: "DOC12345",
     consultationTypes: ["Online", "InPerson"],
     consultationFee: [1000, 1200],
+    experience: "10 years",
     user: {
       create: {
         name: "Dr. Meera Sharma",

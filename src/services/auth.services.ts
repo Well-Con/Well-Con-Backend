@@ -23,6 +23,7 @@ class authServices {
                 data: {
                     expertise: userData.expertise,
                     education: userData.education,
+                    experience: userData.experience,
                     registrationNo: userData.registrationNo,
                     consultationTypes: userData.consultationTypes,
                     consultationFee: userData.consultationFee,

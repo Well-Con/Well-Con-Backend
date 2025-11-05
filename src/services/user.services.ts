@@ -11,6 +11,13 @@ class UserServices {
         const user = await userRepository.getUserById(id);
         return user;
     }
+    async getUserByEmail(email: string) {
+        return userRepository.getUserByEmail(email);
+    }
+
+    async getUserByPhoneNo(phoneNo: string) {
+        return userRepository.getUserByPhoneNo(phoneNo);
+    }
 }
 
 export default new UserServices();

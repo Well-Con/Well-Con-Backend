@@ -18,6 +18,11 @@ class userRepository {
             where: { email },
         });
     }
+    getUserByPhoneNo(phoneNo: string) {
+        return _prisma.user.findUnique({
+            where: { phoneNo },
+        });
+    }
     // Fix: Change parameter type to handle nested creation
     createUser(data: Prisma.UserCreateInput) {
         return _prisma.user.create({

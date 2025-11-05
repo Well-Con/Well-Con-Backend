@@ -4,6 +4,7 @@ import { DoctorDTO } from "../types/DoctorData";
 import doctorServices from "../services/doctor.services";
 import authServices from "../services/auth.services";
 import generateToken from "../utils/jwt";
+import userServices from "../services/user.services";
 
 class authController {
     async registerDoctor(req : Request, res: Response) {
@@ -70,9 +71,9 @@ class authController {
             return res.status(400).json({ error: "Invalid user data" });
         }
         try {
-            const existingUser = await userRepository.getUserByEmail(userData.email);
+            const existingUser = await userRepository.getUserByEmail(userData.email) || await userServices.getUserByPhoneNo(userData.phoneNo);
             if (existingUser) {
-                return res.status(400).json({ error: "Email already in use" });
+                return res.status(400).json({ error: "Email or phone number already in use" });
             }
             const hashedPassword = await authServices.hashPassword(userData.password);
             const newUser = await userRepository.createUser({ ...userData, password: hashedPassword });

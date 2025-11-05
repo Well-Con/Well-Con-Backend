@@ -76,7 +76,8 @@ class authController {
             }
             const hashedPassword = await authServices.hashPassword(userData.password);
             const newUser = await userRepository.createUser({ ...userData, password: hashedPassword });
-            return res.status(201).json(newUser);
+            const token = await generateToken(newUser.id, res);
+            return res.status(201).json({ user: newUser, token });
         } catch (error) {
             console.error("Error registering user:", error);
             return res.status(500).json({ error: "Internal server error" });

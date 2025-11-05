@@ -20,7 +20,7 @@ export type DoctorDTO = {
     area?: string;
     type?: string;
   };
-};
+};  
 
 // For Prisma (after transformation)
 export type DoctorData = {

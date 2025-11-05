@@ -35,6 +35,7 @@ model Doctor {
   id                String        @id @default(uuid())
   expertise         String[]
   education         String[]
+  experience        String
   registrationNo    String        @unique
   consultationTypes ConsultationType[]
   consultationFee   Float[]

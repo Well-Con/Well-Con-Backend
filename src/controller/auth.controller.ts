@@ -16,7 +16,8 @@ class authController {
         const hashedPassword = await authServices.hashPassword(doctorData.password);
 
         const doctor = await authServices.registerDoctor({ ...doctorData, password: hashedPassword });
-        return res.json(doctor);
+        const token = await generateToken(doctor.id, res);
+        return res.json({ user: doctor, token });
     }
     async loginDoctor(req: Request, res: Response) {
         const { email, password } = req.body;

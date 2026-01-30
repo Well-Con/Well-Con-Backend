@@ -28,6 +28,7 @@ class doctorServices{
             throw new Error("Could not fetch doctors");
         }
     }
+    
 
     async getDoctorById(id: string) {
         try {

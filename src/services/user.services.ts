@@ -18,6 +18,11 @@ class UserServices {
     async getUserByPhoneNo(phoneNo: string) {
         return userRepository.getUserByPhoneNo(phoneNo);
     }
+
+    async updateProfile(id: string, updateData: Partial<{ name: string; email: string; phoneNo: string; password: string; }>) {
+        const updatedUser = await userRepository.updateUserById(id, updateData);
+        return updatedUser;
+    }
 }
 
 export default new UserServices();

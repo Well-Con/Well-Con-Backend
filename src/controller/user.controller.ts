@@ -34,6 +34,20 @@ class UserController {
             return res.status(500).json({ message: "Internal server error" });
         }
     }
+    async updateProfile(req: Request, res: Response) {
+        const { id } = req.params;
+        const updateData = req.body;
+        try {
+            const updatedUser = await userServices.updateProfile(id, updateData);
+            if (!updatedUser) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            return res.status(200).json(updatedUser);
+        } catch (error) {
+            console.error("Error updating profile:", error);
+            return res.status(500).json({ message: "Internal server error" });
+        }
+    }
 }
 
 export default new UserController();

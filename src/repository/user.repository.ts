@@ -34,6 +34,12 @@ class userRepository {
             where: { id },
         });
     }   
+    updateUserById(id: string, updateData: Partial<{ name: string; email: string; phoneNo: string; password: string; }>) {
+        return _prisma.user.update({
+            where: { id },
+            data: updateData,
+        });
+    }
 }
 
 export default new userRepository();
